@@ -14,17 +14,17 @@ const pageContent = {
   entities: [
     {
       Title: 'SubTitle',
-      renderString: (): string => '%(PageAlias)s',
+      renderString: (): string => '%(PageAlias)s under construction',
     },
     {
       Title: 'Headline',
       renderString: ({ data, tableData }): string =>
-        `Fusce magna ligula, dignissim mammasay mammasa mamma oo sa amet, fringilla eget, dang shizznit`,
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit`,
     },
     {
       Title: 'Description',
       renderString: ({ data, tableData }): string =>
-        `<p>Its fo rizzle ipsum dolor sit ghetto, dawg adipiscing elizzle. Nullam mofo fo shizzle my nizzle, bling bling volutpizzle, suscipit you son of a bizzle, shizzle my nizzle crocodizzle vizzle, the bizzle. Pellentesque eget tortizzle. Sizzle black. Check it out brizzle you son of a bizzle dapibus turpizzle boofron mah nizzle. Maurizzle pellentesque boom shackalack izzle turpis. We gonna chung izzle tortor. Pellentesque eleifend rhoncizzle shiznit. In izzle habitasse platea dictumst. Crazy dapibizzle. Uhuh ... yih! tellizzle urna, pretium things, shiznit dang, crackalackin vitae, nunc. Shizznit suscipit. Integizzle sempizzle pizzle sed purizzle.</p>`,
+        `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>`,
     },
   ],
   filterToggles: [

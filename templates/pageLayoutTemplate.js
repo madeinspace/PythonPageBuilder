@@ -23,10 +23,6 @@ import ControlPanel from '../../../components/ControlPanel/ControlPanel';
 const %(PageAlias)sPage = () => {
   const { clientAlias, clientProducts } = useContext(ClientContext);
   const { tableData } = useContext(PageContext);
-
-  const hasForecast = clientProducts =>
-    _.some(clientProducts, product => product.AppID === 3);
-
   const chartData = chartBuilder(tableData);
   const chartLineData = chartLineBuilder(tableData);
   const tableParams = tableBuilder(clientAlias, tableData);
@@ -48,7 +44,7 @@ const %(PageAlias)sPage = () => {
       <ItemWrapper>
         <EntityTable
           data={tableParams}
-          name={'Estimated Resident Population'}
+          name={`%(PageAlias)s table name`}
         />
       </ItemWrapper>
     </>
@@ -78,11 +74,12 @@ const Source = () => (
 
 // #region tableBuilder
 const tableBuilder = (alias, nodes) => {
-  const tableTitle = 'Annual change in Estimated Resident Population (ERP)';
-  const anchorName = 'indicators---estimate-resident-population';
+  const tableTitle = 'Table title here';
+  const anchorName = 'anchorname here';
   const Geoname = nodes[0].Geoname;
   const GeonameSTE = nodes[0].GeonameSTE;
   const GeonameAUS = nodes[0].GeonameAUS;
+
   return {
     cssClass: '',
     clientAlias: alias,
@@ -228,21 +225,25 @@ const tableBuilder = (alias, nodes) => {
 
 // #region chartLineBuilder
 const chartLineBuilder = nodes => {
+  const chartType = 'line';
+  const chartTitle = 'Chart title here'
   const clientSerie = _.map(nodes, 'Changeper').reverse();
   const stateSerie = _.map(nodes, 'ChangeperSTE').reverse();
   const australiaSerie = _.map(nodes, 'ChangeperAUS').reverse();
   const categories = _.map(nodes, 'Year').reverse();
+  const chartContainerID = 'makeMeUnique'
   const rawDataSource =
     'Source: Australian Bureau of Statistics, Regional Population Growth, Australia (3218.0). Compiled and presented in economy.id by .id, the population experts.';
-
+  const xAxisLegend = 'xAxis legend here'
+  const yAxisLegend = 'yAxis legend here'
   return {
     cssClass: '',
     highchartOptions: {
       chart: {
-        type: 'line'
+        type: chartType
       },
       title: {
-        text: 'Estimated Resident Population (ERP)'
+        text: chartTitle
       },
       tooltip: {
         pointFormatter: function() {
@@ -268,13 +269,13 @@ const chartLineBuilder = nodes => {
       xAxis: {
         categories,
         title: {
-          text: 'Year ending June'
+          text: xAxisLegend
         }
       },
       yAxis: [
         {
           title: {
-            text: 'Percentage change'
+            text: yAxisLegend
           },
           labels: {
             formatter: function() {
@@ -287,7 +288,7 @@ const chartLineBuilder = nodes => {
     },
     rawDataSource,
     dataSource: <Source />,
-    chartContainerID: 'line',
+    chartContainerID,
     logoUrl: idlogo
   };
 };
@@ -295,27 +296,30 @@ const chartLineBuilder = nodes => {
 
 // #region  chartbuilder
 const chartBuilder = nodes => {
+  const chartType = 'column';
+  const chartTitle = 'Chart title here'
+  const chartSubtitle = nodes[0].Geoname
   const serieData = _.map(nodes, 'Number').reverse();
   const categories = _.map(nodes, 'Year').reverse();
   const rawDataSource =
     'Source: Australian Bureau of Statistics, Regional Population Growth, Australia (3218.0). Compiled and presented in economy.id by .id, the population experts.';
-  const chartContainerID = 'chart1';
+  const chartContainerID = 'makeMeUnique2';
+  const xAxisLegend = 'xAxis legend here'
+  const yAxisLegend = 'yAxis legend here'
   return {
     cssClass: '',
     highchartOptions: {
       chart: {
-        type: 'column'
+        type: chartType
       },
       title: {
-        text: 'Estimated Resident Population (ERP)'
+        text: chartTitle
       },
       subtitle: {
-        text: nodes[0].Geoname
+        text: chartSubtitle
       },
       series: [
         {
-          color: '',
-          yAxis: 0,
           name: nodes[0].Geoname,
           data: serieData
         }
@@ -323,13 +327,13 @@ const chartBuilder = nodes => {
       xAxis: {
         categories,
         title: {
-          text: 'Year ending June'
+          text: xAxisLegend
         }
       },
       yAxis: [
         {
           title: {
-            text: 'Total Estimated Resident Population (ERP)'
+            text: yAxisLegend
           }
         }
       ]
